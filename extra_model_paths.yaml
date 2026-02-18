@@ -1,8 +1,5 @@
 checkpoints:
-  - /runpod-volume/models/checkpoints
-  - /runpod-volume/checkpoints
-  - /comfyui/models/checkpoints
+  - /runpod-volume/checkpoints/
 
 vae:
-  - /runpod-volume/vae
-  - /comfyui/models/vae
+  - /runpod-volume/vae/
