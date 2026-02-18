@@ -14,33 +14,33 @@
   "3": {
     "class_type": "EmptyLatentImage",
     "inputs": {
-      "width": 512,
-      "height": 768,
+      "width": "__WIDTH__",
+      "height": "__HEIGHT__",
       "batch_size": 1
     }
   },
   "4": {
     "class_type": "CLIPTextEncode",
     "inputs": {
-      "text": "professional photo of a beautiful woman",
+      "text": "__FULL_POSITIVE_PROMPT__",
       "clip": ["1", 1]
     }
   },
   "5": {
     "class_type": "CLIPTextEncode",
     "inputs": {
-      "text": "blurry, ugly",
+      "text": "__FULL_NEGATIVE_PROMPT__",
       "clip": ["1", 1]
     }
   },
   "6": {
     "class_type": "KSampler",
     "inputs": {
-      "seed": 42,
-      "steps": 20,
-      "cfg": 7,
-      "sampler_name": "euler",
-      "scheduler": "normal",
+      "seed": "__SEED__",
+      "steps": "__STEPS__",
+      "cfg": "__CFG__",
+      "sampler_name": "__SAMPLER__",
+      "scheduler": "__SCHEDULER__",
       "denoise": 1,
       "model": ["1", 0],
       "positive": ["4", 0],
@@ -58,7 +58,7 @@
   "8": {
     "class_type": "SaveImage",
     "inputs": {
-      "filename_prefix": "cosmetics_output",
+      "filename_prefix": "__FILENAME_PREFIX__",
       "images": ["7", 0]
     }
   }
