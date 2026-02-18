@@ -1,1 +1,56 @@
-{"input":{"workflow":{"1":{"class_type":"CheckpointLoaderSimple","inputs":{"ckpt_name":"/runpod-volume/Realistic_Vision_V6.0_NV_B1.safetensors"}},"2":{"class_type":"CLIPTextEncode","inputs":{"text":"a beautiful woman","clip":["1",1]}},"3":{"class_type":"EmptyLatentImage","inputs":{"width":512,"height":512,"batch_size":1}},"4":{"class_type":"KSampler","inputs":{"seed":42,"steps":20,"cfg":7.0,"sampler_name":"euler","scheduler":"normal","denoise":1.0,"model":["1",0],"positive":["2",0],"negative":["2",0],"latent_image":["3",0]}},"5":{"class_type":"VAEDecode","inputs":{"samples":["4",0],"vae":["1",2]}},"6":{"class_type":"SaveImage","inputs":{"filename_prefix":"test_output","images":["5",0]}}}}}
+{
+  "input": {
+    "workflow": {
+      "1": {
+        "class_type": "CheckpointLoaderSimple",
+        "inputs": {
+          "ckpt_name": "/runpod-volume/models/checkpoints/Realistic_Vision_V6.0_NV_B1.safetensors"
+        }
+      },
+      "2": {
+        "class_type": "CLIPTextEncode",
+        "inputs": {
+          "text": "a beautiful woman",
+          "clip": ["1", 1]
+        }
+      },
+      "3": {
+        "class_type": "EmptyLatentImage",
+        "inputs": {
+          "width": 512,
+          "height": 512,
+          "batch_size": 1
+        }
+      },
+      "4": {
+        "class_type": "KSampler",
+        "inputs": {
+          "seed": 42,
+          "steps": 20,
+          "cfg": 7.0,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "denoise": 1.0,
+          "model": ["1", 0],
+          "positive": ["2", 0],
+          "negative": ["2", 0],
+          "latent_image": ["3", 0]
+        }
+      },
+      "5": {
+        "class_type": "VAEDecode",
+        "inputs": {
+          "samples": ["4", 0],
+          "vae": ["1", 2]
+        }
+      },
+      "6": {
+        "class_type": "SaveImage",
+        "inputs": {
+          "filename_prefix": "test_output",
+          "images": ["5", 0]
+        }
+      }
+    }
+  }
+}
