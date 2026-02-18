@@ -1,4 +1,5 @@
 checkpoints:
+  - /runpod-volume/models/checkpoints
   - /runpod-volume/checkpoints
   - /comfyui/models/checkpoints
 
