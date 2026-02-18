@@ -1,12 +1,18 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.5.1-base
 
-# install custom nodes into comfyui (first node with --mode remote to fetch updated cache)
-# Could not resolve unknown_registry node 'CheckpointLoaderSimple' (no aux_id) - skipped
+# 从网络卷复制模型（而不是从HuggingFace下载）
+# 注意：Serverless端点网络卷挂载路径是 /runpod-volume
+# 需要先确保网络卷z45mpn2cdn正确挂载
 
-# download models into comfyui
-RUN comfy model download --url https://huggingface.co/SG161222/Realistic_Vision_V6.0_B1_noVAE/blob/main/Realistic_Vision_V6.0_NV_B1.safetensors --relative-path models/checkpoints --filename Realistic_Vision_V6.0_NV_B1.safetensors
-RUN comfy model download --url https://huggingface.co/JCTN/Juggernaut/blob/main/realisticVisionV60B1_v51HyperVAE.safetensors --relative-path models/vae --filename realisticVisionV60B1_v51HyperVAE.safetensors
+# 创建必要目录
+RUN mkdir -p /comfyui/models/checkpoints /comfyui/models/vae
 
-# copy all input data (like images or videos) into comfyui (uncomment and adjust if needed)
-# COPY input/ /comfyui/input/
+# 从网络卷复制模型文件（路径需要确认）
+# 假设模型在 /runpod-volume/ 目录下
+COPY --from=runpod-volume /runpod-volume/Realistic_Vision_V6.0_NV_B1.safetensors /comfyui/models/checkpoints/
+COPY --from=runpod-volume /runpod-volume/realisticVisionV60B1_v51HyperVAE.safetensors /comfyui/models/vae/
+
+# 或者使用RUN命令复制（如果网络卷已经挂载）
+# RUN cp /runpod-volume/Realistic_Vision_V6.0_NV_B1.safetensors /comfyui/models/checkpoints/
+# RUN cp /runpod-volume/realisticVisionV60B1_v51HyperVAE.safetensors /comfyui/models/vae/
