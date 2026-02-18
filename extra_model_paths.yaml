@@ -1,32 +1,7 @@
-# 🎯 灵创AI一体机 - ComfyUI额外模型路径配置
-# 永久性解决方案：支持6大行业模型自动识别
-
 checkpoints:
-  # 网络卷目录（主要存储）
   - /runpod-volume/checkpoints
-  # 兼容性目录（备用）
-  - /runpod-volume/models/checkpoints
-  # ComfyUI默认目录
   - /comfyui/models/checkpoints
 
 vae:
-  # 网络卷VAE目录
   - /runpod-volume/vae
-  # 兼容性目录
-  - /runpod-volume/models/vae
-  # ComfyUI默认目录
   - /comfyui/models/vae
-
-loras:
-  # 网络卷LoRA目录（行业特定风格）
-  - /runpod-volume/loras
-  # 兼容性目录
-  - /runpod-volume/models/loras
-  # ComfyUI默认目录
-  - /comfyui/models/loras
-
-embeddings:
-  # 网络卷Embeddings目录（文本编码）
-  - /runpod-volume/embeddings
-  # ComfyUI默认目录
-  - /comfyui/models/embeddings
