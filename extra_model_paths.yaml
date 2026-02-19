@@ -1,5 +1,2 @@
-checkpoints:
-  - /runpod-volume/checkpoints/
-
-vae:
-  - /runpod-volume/vae/
+checkpoints: "/workspace/models/checkpoints/ /comfyui/models/checkpoints/"
+vae: "/workspace/models/vae/ /comfyui/models/vae/"
