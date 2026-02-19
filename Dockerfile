@@ -1,10 +1,8 @@
-# 复制配置文件
+FROM runpod/worker-comfyui:5.5.1-base
+RUN apt-get update && apt-get install -y curl
+WORKDIR /workspace
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 ENV EXTRA_MODEL_PATHS=/comfyui/extra_model_paths.yaml
-
-# 复制启动脚本
 COPY start_with_proxy.sh /workspace/start_with_proxy.sh
 RUN chmod +x /workspace/start_with_proxy.sh
-
-# 修改启动命令
 CMD ["/bin/bash", "/workspace/start_with_proxy.sh"]
